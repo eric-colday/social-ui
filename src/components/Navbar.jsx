@@ -5,6 +5,7 @@ import ChatIcon from "@mui/icons-material/Chat";
 import OndemandVideoIcon from "@mui/icons-material/OndemandVideo";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import MenuIcon from '@mui/icons-material/Menu';
 import Link from "next/link";
 import React, { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
@@ -15,6 +16,9 @@ const Navbar = () => {
   const router = usePathname();
   const [showCompte, setShowCompte] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
+
+
 
   const handleShowCompte = () => {
     setShowCompte(!showCompte);
@@ -22,6 +26,10 @@ const Navbar = () => {
 
   const handleShowSearch = () => {
     setShowSearch(!showSearch);
+  };
+
+  const handleShowMenu = () => {
+    setShowMenu(!showMenu);
   };
 
   return (
@@ -37,7 +45,7 @@ const Navbar = () => {
                 <input
                   type="text"
                   placeholder="Rechercher... "
-                  className="bg-neutral-700 rounded-full pl-4 py-2 w-full outline-none"
+                  className="bg-neutral-700 rounded-full pl-4 py-2 w-40 max-[320px]:w-36 outline-none"
                 />
               </div>
             ) : (
@@ -47,7 +55,7 @@ const Navbar = () => {
                     NecSocial
                   </span>
                 </Link>
-                <SearchIcon className="absolute w-6 h-6 text-gray-400 ml-36 mt-1" />
+                <SearchIcon className="absolute w-6 h-6 text-gray-400 ml-36 mt-1" onClick={handleShowSearch}/>
                 <input
                   type="text"
                   placeholder="Rechercher ..."
@@ -57,7 +65,11 @@ const Navbar = () => {
               </div>
             )}
           </form>
-          <div className="flex justify-center">
+          
+          <div className="hidden max-[750px]:flex max-[750px]:items-center max-[750px]:w-full max-[750px]:h-16 max-[750px]:">
+            <MenuIcon className="w-7 h-7 "/>
+          </div>
+          <div className="flex justify-center pl-32 max-[910px]:pl-0 max-[750px]:hidden">
             <Link
               href="/"
               className={
@@ -99,13 +111,13 @@ const Navbar = () => {
             </Link>
           </div>
         </div>
-        <div className="group/item cursor-pointer" onClick={handleShowCompte}>
+        <div className="group/item cursor-pointer max-[458px]:w-full max-[458px]:flex max-[458px]:justify-end " onClick={handleShowCompte}>
           <img
             src="/navbar/noavatar.png"
             alt="profile"
             className="rounded-full w-10 h-10 cursor-pointer"
           />
-          <div className="absolute bottom-[640px] right-4 z-50 bg-white px-4 py-1   rounded-lg text-blue-950 group/edit invisible hover:bg-slate-200  group-hover/item:visible ">
+          <div className="absolute bottom-[640px] right-4 z-50 bg-white px-4 py-1 rounded-lg text-blue-950 group/edit invisible hover:bg-slate-200  group-hover/item:visible ">
             Compte
           </div>
           {showCompte ? (
